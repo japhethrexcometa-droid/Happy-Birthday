@@ -45,14 +45,13 @@ const images = [
 
 const messages = [
     {
-        title: "Psalm 118:24",
-        verse: `"This is the day the Lord has made; let us rejoice and be glad in it."`,
-        wish: "Thanking God for the gift of your life and the joy you bring to all of us. Have a truly blessed and joyful birthday!"
+        verse: "May the Lord bless you and protect you. May He look upon you with joy and surround your life with His love and gentle care. Happy Birthday!"
     },
     {
-        title: "Numbers 6:24-26",
-        verse: `"The Lord bless you and keep you; the Lord make his face shine on you and be gracious to you; the Lord turn his face toward you and give you peace."`,
-        wish: "Wishing you a birthday filled with the Lord's gentle grace and everlasting peace. May He guide your steps and protect you in the year ahead!"
+        verse: "This is the day the Lord has made; let us rejoice and be glad in it! Wishing you a beautifully blessed birthday."
+    },
+    {
+        verse: "Thanks be to God for the wonderful gift of you! May your year ahead overflow with His grace and abundant blessings."
     },
     {
         isFinal: true,
@@ -87,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             messageHTML += `
                 <div class="message-content" id="msg-${index}">
-                    <p class="verse-title">${msg.title}</p>
+                    ${msg.title ? `<p class="verse-title">${msg.title}</p>` : ''}
                     <h3 class="verse-text">${msg.verse}</h3>
-                    <p class="wish-text">${msg.wish}</p>
+                    ${msg.wish ? `<p class="wish-text">${msg.wish}</p>` : ''}
                 </div>
             `;
         }
