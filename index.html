@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Ma & Pa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Audio element. The user will place their song in assets/music.mp3 -->
+    <audio id="bg-music" loop>
+        <source src="assets/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Intro Screen to capture interaction and play music -->
+    <div id="intro-screen">
+        <div class="intro-content">
+            <h1>A Special Surprise</h1>
+            <p>For Ma & Pa</p>
+            <button id="start-btn">Tap to Open <span class="heart">♥</span></button>
+        </div>
+    </div>
+
+    <!-- Main Experience -->
+    <div id="main-experience" class="hidden">
+        <!-- Background Slideshow -->
+        <div id="slideshow-container"></div>
+        
+        <!-- Overlay to ensure text readability -->
+        <div class="overlay"></div>
+
+        <!-- Glassmorphic Message Container -->
+        <div class="message-wrapper">
+            <div id="message-container" class="glass-card">
+                <!-- Messages will be injected and animated here by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
