@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let imageInterval;
 
     // Build Messages HTML
-    let messageHTML = '';
+    let messageHTML = `<button id="close-card-btn" class="close-btn" aria-label="Close Message">&times;</button>`;
     messages.forEach((msg, index) => {
         if (msg.isFinal) {
             messageHTML += `
@@ -190,5 +190,24 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             startMessageSequence();
         }, 1500);
+    });
+
+    // Close and Show Card Logic
+    const closeCardBtn = document.getElementById('close-card-btn');
+    const showCardBtn = document.getElementById('show-card-btn');
+    const overlay = document.querySelector('.overlay');
+
+    closeCardBtn.addEventListener('click', () => {
+        messageContainer.classList.remove('visible');
+        overlay.classList.add('light'); // Make overlay lighter so images pop out
+        setTimeout(() => {
+            showCardBtn.classList.remove('hidden');
+        }, 1000);
+    });
+
+    showCardBtn.addEventListener('click', () => {
+        showCardBtn.classList.add('hidden');
+        overlay.classList.remove('light');
+        messageContainer.classList.add('visible');
     });
 });
