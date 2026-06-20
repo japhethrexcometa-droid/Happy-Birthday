@@ -106,15 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Shuffle images for a dynamic experience every time
     const shuffledImages = [...images].sort(() => 0.5 - Math.random());
 
+    function preloadImage(url) {
+        const img = new Image();
+        img.src = encodeURI(url);
+    }
+
     // Setup Slideshow
     function setupSlideshow() {
         const slide1 = document.createElement('div');
         slide1.className = 'slide active';
-        slide1.style.backgroundImage = `url('${shuffledImages[0]}')`;
+        slide1.style.backgroundImage = `url('${encodeURI(shuffledImages[0])}')`;
         
         const slide2 = document.createElement('div');
         slide2.className = 'slide';
-        slide2.style.backgroundImage = `url('${shuffledImages[1]}')`;
+        slide2.style.backgroundImage = `url('${encodeURI(shuffledImages[1])}')`;
 
         slideshowContainer.appendChild(slide1);
         slideshowContainer.appendChild(slide2);
@@ -122,16 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let activeSlide = 1;
         currentImageIndex = 1;
 
+        // Preload the next image in advance
+        if (shuffledImages.length > 2) {
+            preloadImage(shuffledImages[2]);
+        }
+
         imageInterval = setInterval(() => {
             currentImageIndex = (currentImageIndex + 1) % shuffledImages.length;
+            const nextImageUrl = encodeURI(shuffledImages[currentImageIndex]);
+            
+            // Preload the image after this one so it's ready for the next crossfade
+            preloadImage(shuffledImages[(currentImageIndex + 1) % shuffledImages.length]);
             
             if (activeSlide === 1) {
-                slide2.style.backgroundImage = `url('${shuffledImages[currentImageIndex]}')`;
+                slide2.style.backgroundImage = `url('${nextImageUrl}')`;
                 slide2.classList.add('active');
                 slide1.classList.remove('active');
                 activeSlide = 2;
             } else {
-                slide1.style.backgroundImage = `url('${shuffledImages[currentImageIndex]}')`;
+                slide1.style.backgroundImage = `url('${nextImageUrl}')`;
                 slide1.classList.add('active');
                 slide2.classList.remove('active');
                 activeSlide = 1;
